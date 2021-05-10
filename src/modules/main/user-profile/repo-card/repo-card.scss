@@ -1,0 +1,48 @@
+@import 'src/constants/colors';
+
+.repo-card {
+  width: calc(50% - 50px - 30px);
+  padding: 20px 15px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+  background-color: $secondaryBg;
+  border-radius: 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: 1s ease;
+
+  &:hover {
+    transition: .5s ease;
+    box-shadow: 10px -10px 0px 0px rgba($mainBg, .75);
+  }
+
+  &:nth-child(even) {
+    margin-right: 10px;
+  }
+
+  &-img {
+    width: 60px;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+
+  &-name {
+    color: $mainDark;
+  }
+
+  &-tags {
+    display: flex;
+    align-items: center;
+  }
+
+  &-tag {
+    max-width: fit-content;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #fff;
+    margin-top: 20px;
+    margin-right: 10px;
+    background-color: $mainBg;
+    border-radius: 20px;
+  }
+}

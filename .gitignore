@@ -9,8 +9,6 @@
 # production
 /build
 .idea
-.prettierrc.json
-tsconfig.json
 
 # misc
 .DS_Store

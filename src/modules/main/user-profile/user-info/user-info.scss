@@ -1,0 +1,48 @@
+@import 'src/constants/colors';
+
+.user-block {
+  width: 25%;
+  height: calc(100vh - 90px - 40px);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
+  background-color: $mainBg;
+  box-shadow: 5px 0px 20px 0px #111e5d;
+
+  &-img {
+    width: 150px;
+    border-radius: 50%;
+    margin-bottom: 50px;
+  }
+
+  &-info {
+    width: 100%;
+
+    &-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding: 0 30px 20px;
+      border-bottom: 1px solid rgba(#fff, .5);
+
+      > p {
+        user-select: none;
+        color: #fff;
+
+        &:first-of-type {
+          min-width: 120px;
+          font-weight: bold;
+        }
+
+        &:last-of-type {
+          max-width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+}
