@@ -22,10 +22,10 @@ export const Users: React.FC = () => {
     }, [h]);
 
     useEffect(() => {
-        if (userListState.data === null && !userListState.isLoading) {
+        if (userListState.data === null && !userListState.isLoading && !userListState.error) {
             d(getUserListThunk())
         }
-    }, [d, userListState.data, userListState.isLoading]);
+    }, [d, userListState.data, userListState.isLoading, userListState.error]);
 
     useEffect(() => {
         if (debouncedSearchTerm.length) {
@@ -40,14 +40,20 @@ export const Users: React.FC = () => {
             searchText={'Enter username...'}
         >
             {
-                userListState.data ? (
-                    <div className='users'>
-                        <UserList
-                            data={userListState.search.length ? userListState.filteredData : userListState.data}
-                            goToUserProfile={(username: string) => goToUserProfile(username)}
-                        />
+                !userListState.error ? (
+                    userListState.data ? (
+                        <div className='users'>
+                            <UserList
+                                data={userListState.search.length ? userListState.filteredData : userListState.data}
+                                goToUserProfile={(username: string) => goToUserProfile(username)}
+                            />
+                        </div>
+                    ) : <Loader/>
+                ) : (
+                    <div className='error'>
+                        <p>{userListState.error}...</p>
                     </div>
-                ) : <Loader/>
+                )
             }
         </HeaderLayout>
     )

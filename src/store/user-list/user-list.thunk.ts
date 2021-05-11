@@ -17,7 +17,7 @@ export const getUserListThunk = (): AppThunk => async dispatch => {
         const reformatedData: IUserListReformated[] = reformatUserList(profiles, data);
         dispatch(getUserListActions.success(reformatedData));
     } catch (error) {
-        dispatch(getUserListActions.failure(error));
+        dispatch(getUserListActions.failure(error.response.data.message));
     }
 };
 
@@ -30,7 +30,7 @@ export const getFilteredUserListThunk = (searchQuery: string): AppThunk => async
             const reformatedData: IUserListReformated[] = reformatUserList(profiles, filteredData.items);
             dispatch(getFilteredUserListActions.success(reformatedData));
         } catch (error) {
-            dispatch(getFilteredUserListActions.failure(error));
+            dispatch(getFilteredUserListActions.failure(error.response.data.message));
         }
     }
 };

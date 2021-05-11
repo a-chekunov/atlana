@@ -27,10 +27,10 @@ export const UserProfile: React.FC = () => {
     const goToGithubRepoUrl = (url: string) => window.open(url, '_blank')
 
     useEffect(() => {
-        if (userProfileState.userProfile === null) {
+        if (userProfileState.userProfile === null && !userProfileState.isLoading && !userProfileState.error) {
             d(getUserProfileThunk(username))
         }
-    }, [d, l, username, userProfileState.userProfile])
+    }, [d, l, username, userProfileState.userProfile, userProfileState.isLoading, userProfileState.error])
 
     // useEffect(() => {
     //     if (debouncedSearchTerm.length) {
@@ -45,26 +45,32 @@ export const UserProfile: React.FC = () => {
             // searchText={'Enter user`s repository...'}
         >
             {
-                userProfileState.userProfile && userProfileState.userRepos
-                    ? (
-                        <div className='user-profile'>
-                            <UserInfo
-                                user={{
-                                    'img': userProfileState.userProfile.avatar_url,
-                                    'username': userProfileState.userProfile.login,
-                                    'email': userProfileState.userProfile.email,
-                                    'location': userProfileState.userProfile.location,
-                                    'joinDate': userProfileState.userProfile.created_at,
-                                    'followers': userProfileState.userProfile.followers,
-                                    'following': userProfileState.userProfile.following,
-                                }}
-                            />
-                            <RepoList
-                                repos={userProfileState.userRepos}
-                                goToGithubRepoUrl={(url: string) => goToGithubRepoUrl(url)}
-                            />
-                        </div>
-                    ) : <Loader/>
+                !userProfileState.error ? (
+                    userProfileState.userProfile && userProfileState.userRepos
+                        ? (
+                            <div className='user-profile'>
+                                <UserInfo
+                                    user={{
+                                        'img': userProfileState.userProfile.avatar_url,
+                                        'username': userProfileState.userProfile.login,
+                                        'email': userProfileState.userProfile.email,
+                                        'location': userProfileState.userProfile.location,
+                                        'joinDate': userProfileState.userProfile.created_at,
+                                        'followers': userProfileState.userProfile.followers,
+                                        'following': userProfileState.userProfile.following,
+                                    }}
+                                />
+                                <RepoList
+                                    repos={userProfileState.userRepos}
+                                    goToGithubRepoUrl={(url: string) => goToGithubRepoUrl(url)}
+                                />
+                            </div>
+                        ) : <Loader/>
+                ) : (
+                    <div className='error'>
+                        <p>{userProfileState.error}...</p>
+                    </div>
+                )
             }
         </HeaderLayout>
     )

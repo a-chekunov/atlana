@@ -12,7 +12,7 @@ export const getUserProfileThunk = (username: string): AppThunk => async dispatc
         const reformatedData: IFullProfileInfo = reformatUserProfile(profile, repos)
         dispatch(getUserProfileActions.success({profile: reformatedData.profile, repos: reformatedData.repos}));
     } catch (error) {
-        dispatch(getUserProfileActions.failure(error));
+        dispatch(getUserProfileActions.failure(error.response.data.message));
     }
 }
 

@@ -5,3 +5,11 @@
   justify-content: space-between;
   margin-top: 90px;
 }
+
+.error {
+  max-width: 80%;
+  height: calc(100vh - 90px);
+  margin: 90px auto 0;
+  padding-top: 50px;
+  text-align: center;
+}

@@ -7,7 +7,7 @@ export const restAxios = axios.create({
 
 restAxios.interceptors.request.use(
     config => {
-        const token = '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';
+        const token = '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';
         config.headers.Authorization = `token ${token}`;
         return config
     },
